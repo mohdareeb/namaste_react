@@ -29,9 +29,26 @@ img{
 .restraunt-card{
     margin:5px;
     width: 180px;
-    background-color: darkgray;
+    background-color: #f0f0f0f0;
 }
 .restraunt-card:hover{
     border: 1px solid black;
+    cursor: pointer;
+}
+
+.Shimmer-cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer{
+    width: 180px;
+    height: 250px;
+    margin:5px;
+    background-color: #f0f0f0f0;
+
+}
+
+.Login-Logout{
     cursor: pointer;
 }
