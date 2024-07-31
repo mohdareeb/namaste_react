@@ -1,8 +1,8 @@
 import RestrauntCard from "./RestrauntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-
-
+import { Link } from "react-router-dom";
+ 
 
 const Body =()=>{
 
@@ -57,7 +57,7 @@ const Body =()=>{
                 
                 {
                     search_list.map((res_details) => (
-                        <RestrauntCard resobj={res_details} key ={res_details.info.id} />
+                        <Link key ={res_details.info.id} to={"/restraunt/" + res_details.info.id}><RestrauntCard resobj={res_details}  /></Link>
                     ))
                 }       
                 
