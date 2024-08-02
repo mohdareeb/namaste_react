@@ -2,7 +2,7 @@ import RestrauntCard from "./RestrauntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
- 
+import useInternetCheck from "./useInternetCheck";
 
 const Body =()=>{
 
@@ -24,6 +24,8 @@ const Body =()=>{
         set_reslist(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); // This is called optional chaining
         set_search_list(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
+    const status = useInternetCheck();
+    if (status===false) return <h1>Check your Internet Connection !!!</h1>
     if(reslist.length ===0) return <Shimmer/>
     return (
         <div className="body">

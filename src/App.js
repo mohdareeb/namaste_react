@@ -11,9 +11,11 @@ import About from "./component/About"
 import Error from "./component/Error"
 import Contact from "./component/Contact.js"
 import Restraunt from "./component/Restraunt.js"
-
+import useInternetCheck from "./component/useInternetCheck"
 
 const App =()=>{
+    const status = useInternetCheck();
+    if (status===false) return <h1>Check your Internet Connection !!!</h1>
     return (
         <div className="Main">
             <Header/>
