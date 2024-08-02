@@ -2,7 +2,7 @@
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(heading);
 
-import React from "react"
+import React ,{ lazy,Suspense} from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./component/Header"
 import Body from "./component/Body"
@@ -11,11 +11,14 @@ import About from "./component/About"
 import Error from "./component/Error"
 import Contact from "./component/Contact.js"
 import Restraunt from "./component/Restraunt.js"
-import useInternetCheck from "./component/useInternetCheck"
+import Shimmer from "./component/Shimmer.js"
+
+
+const Grocery = lazy(()=>
+                import("./component/Grocery.js"))
 
 const App =()=>{
-    const status = useInternetCheck();
-    if (status===false) return <h1>Check your Internet Connection !!!</h1>
+   
     return (
         <div className="Main">
             <Header/>
@@ -47,7 +50,13 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/restraunt/:id",
-                element:<Restraunt/>
+                element:<Restraunt/>,
+                errorElement:<Error/>
+            },
+            {
+                path:"/grocery",
+                element:<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>,
+                errorElement:<Error/>
             }
         ]
     },
