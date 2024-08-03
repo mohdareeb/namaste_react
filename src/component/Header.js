@@ -8,20 +8,20 @@ const Header=()=>{
     const [btn,setbtn] = useState("Login")
     const status = useInternetCheck();
     return (
-        <div className="Header"> 
+        <div className="flex justify-between bg-pink-100 shadow-lg mb-2"> 
             <div className="logo-container">
-                <img className="logo" height ="50px"src={LOGO_URL} width ="70vpx" ></img>
+                <img className="w-12" height ="50px"src={LOGO_URL} width ="70vpx" ></img>
             </div>
             <div className="nav-items">
-                <ul>
-                    {status===true ? <li>Status : 🟢</li> : <li>Status : 🔴</li>}
+                <ul className="flex p-4 m-4">
+                    {status===true ? <li className="m-4">Status : 🟢</li> : <li className="m-4">Status : 🔴</li>}
                     
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to ="/about">About Us</Link></li>
-                    <li><Link to="/contact">Contact Us</Link></li>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li><Link>Cart</Link></li>
-                    <li>
+                    <li className="m-4"><Link to="/">Home</Link></li>
+                    <li className="m-4"><Link to ="/about">About Us</Link></li>
+                    <li className="m-4"><Link to="/contact">Contact Us</Link></li>
+                    <li className="m-4"><Link to="/grocery">Grocery</Link></li>
+                    <li className="m-4"><Link>Cart</Link></li>
+                    <li className="m-4">
                         <button className="Login-Logout" onClick={()=>{
                             btn==="Login" ? setbtn("Logout") : setbtn("Login")
                         }} >{btn}</button>

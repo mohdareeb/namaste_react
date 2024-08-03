@@ -29,33 +29,35 @@ const Body =()=>{
     if(reslist.length ===0) return <Shimmer/>
     return (
         <div className="body">
-            <div className="search-btn">
-                <input type="text" value ={search} onChange={(e)=>{
-                        setsearch(e.target.value)  // evry time useState variable changes the whole component re render again
-                }}>
-                </input> 
-                
-                <button className="search-btn" onClick={()=>{
+            <div className="flex">
+                <div className="search-btn">
+                    <input className="border border-solid border-black" type="text" value ={search} onChange={(e)=>{
+                            setsearch(e.target.value)  // evry time useState variable changes the whole component re render again
+                    }}>
+                    </input> 
                     
-                    reslist.filter((res)=>{
-                        if(res?.info?.name?.toLowerCase().includes(search?.toLowerCase())) search_result.push(res)
-                    })
-                     set_search_list(search_result)
-                }}
-                
-                >Click here to search</button>
+                    <button className="px-4 bg-green-100 m-4" onClick={()=>{
+                        
+                        reslist.filter((res)=>{
+                            if(res?.info?.name?.toLowerCase().includes(search?.toLowerCase())) search_result.push(res)
+                        })
+                        set_search_list(search_result)
+                    }}
+                    
+                    >Click here to search</button>
+                </div>
+                <div className="filter-btn p-4">
+                    <button className="btn"
+                            onClick={()=>{
+                                reslist.filter((res)=>{
+                                    if(res.info.avgRating>4) upadtes_reslist.push(res)
+                                })
+                                set_search_list(upadtes_reslist);
+                            }}
+                    >Click here to filter</button>
+                </div>
             </div>
-            <div className="filter-btn">
-                <button className="btn"
-                        onClick={()=>{
-                            reslist.filter((res)=>{
-                                if(res.info.avgRating>4) upadtes_reslist.push(res)
-                            })
-                            set_search_list(upadtes_reslist);
-                        }}
-                >Click here to filter</button>
-            </div>
-            <div className="res-card">
+            <div className="flex flex-wrap">
                 
                 {
                     search_list.map((res_details) => (
