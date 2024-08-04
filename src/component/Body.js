@@ -1,8 +1,9 @@
 import RestrauntCard from "./RestrauntCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useInternetCheck from "./useInternetCheck";
+import UserContext from "./UserContext";
 
 const Body =()=>{
 
@@ -12,6 +13,8 @@ const Body =()=>{
     // console.log(reslist);
     let upadtes_reslist=[];
     let search_result=[];
+    const {loggedUser,setUsername} = useContext(UserContext);
+    console.log(loggedUser);
     useEffect(()=>{
         fetchData();
     },[])
@@ -55,6 +58,13 @@ const Body =()=>{
                                 set_search_list(upadtes_reslist);
                             }}
                     >Click here to filter</button>
+                </div>
+                <div className="filter-btn p-4">
+                    <label>Username : </label>
+                    <input className="border border-b-gray-800" onChange={(e)=>{
+                        console.log(e.target.value)
+                        setUsername(e.target.value)
+                    }}/>
                 </div>
             </div>
             <div className="flex flex-wrap">

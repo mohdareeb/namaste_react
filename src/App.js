@@ -2,7 +2,7 @@
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(heading);
 
-import React ,{ lazy,Suspense} from "react"
+import React ,{ lazy,Suspense, useContext, useState} from "react"
 import ReactDOM from "react-dom/client"
 import Header from "./component/Header"
 import Body from "./component/Body"
@@ -12,18 +12,22 @@ import Error from "./component/Error"
 import Contact from "./component/Contact.js"
 import Restraunt from "./component/Restraunt.js"
 import Shimmer from "./component/Shimmer.js"
-
+import UserContext from "./component/UserContext.js"
 
 const Grocery = lazy(()=>
                 import("./component/Grocery.js"))
 
 const App =()=>{
-   
+   const [username,setUsername] = useState("Default User");
+   console.log(username)
     return (
-        <div className="Main">
-            <Header/>
-            <Outlet/>
-        </div>
+            <UserContext.Provider value ={{loggedUser:username,setUsername}}>
+                <div className="Main">
+                    <Header/>
+                    <Outlet/>
+                </div>
+            </UserContext.Provider>
+       
     )
 }
 
