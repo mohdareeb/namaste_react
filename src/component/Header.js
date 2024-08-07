@@ -4,12 +4,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useInternetCheck from "./useInternetCheck";
 import UserContext from "./UserContext";
+import { useSelector } from "react-redux";
 
 const Header=()=>{
     const [btn,setbtn] = useState("Login")
     const status = useInternetCheck();
     const {loggedUser,setUsername} = useContext(UserContext);
-    
+    /// selector hook , subscribing to the stpre using selector 
+    const cartItems = useSelector((store)=>store.cart.items);
+
     return (
         <div className="flex justify-between bg-pink-100 shadow-lg mb-2"> 
             <div className="logo-container">
@@ -23,8 +26,8 @@ const Header=()=>{
                     <li className="m-4"><Link to ="/about">About Us</Link></li>
                     <li className="m-4"><Link to="/contact">Contact Us</Link></li>
                     <li className="m-4"><Link to="/grocery">Grocery</Link></li>
-                    <li className="m-4"><Link>Cart</Link></li>
-                    <li className="m-4"><Link to="/">{loggedUser}</Link></li>
+                    <li className="m-4 font-bold"><Link to="/cart">Cart ({cartItems.length})</Link></li>
+                    <li className="m-4 "><Link to="/">{loggedUser}</Link></li>
                     <li className="m-4">
                         <button className="Login-Logout" onClick={()=>{
                             btn==="Login" ? setbtn("Logout") : setbtn("Login")

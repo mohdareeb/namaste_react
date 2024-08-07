@@ -2,8 +2,16 @@ import {useEffect,useState} from "react";
 import { useParams } from "react-router-dom";
 import useRestrauntMenu from "./useRestrauntMenu";
 import {CON_URL} from "../utils/constant";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const Restraunt=()=>{
+    const dispatch = useDispatch();
+
+    const handleAddItem=(item)=>{
+        // dispatch an action 
+        dispatch(addItem(item));
+    }
     const {id} = useParams();
     console.log(id)
     const [show,setShow]=useState(false)
@@ -45,7 +53,9 @@ const Restraunt=()=>{
                                     </div>
                                     <img src = {CON_URL + item2.card.info.imageId} className="w-40" />
                                     <div className=" flex justify-between">
-                                        <button className="bg-black text-white h-8 p-2 rounded-lg">Add this </button>
+                                        <button className="bg-black text-white h-8 p-2 rounded-lg" 
+                                        onClick={()=>handleAddItem(item2)}
+                                        >Add this </button>
                                     </div>
                                 </div>
                                 
